@@ -5,7 +5,7 @@ import pandas as pd
 class DataProcessor:
     def __init__(self, filename):
         self.filename = filename
-        self.expected_columns = ['A', 'B', 'C', 'D']
+        self.expected_columns = ['Участники гражданского оборота','Тип операции','Сумма операции','Вид расчета','Место оплаты','Терминал оплаты','Дата оплаты','Время оплаты','Результат операции','Cash-back','Сумма cash-back']
         self.expected_dtypes = {
             'A': int,
             'B': str,
@@ -21,7 +21,7 @@ class DataProcessor:
             df = pd.read_csv(self.filename)
 
             if df.empty:
-                raise ValueError("Датасет пуст")
+                raise ValueError("Датафрейм пуст")
 
             self._validate_structure(df)
 
@@ -57,10 +57,4 @@ class DataProcessor:
             for error in errors:
                 print(error)
             raise ValueError("Файл не соответствует структуре")
-
-
-if __name__ == "__main__":
-    processor = DataProcessor("var9.csv")
-    processor.read_dataframe()
-
 
